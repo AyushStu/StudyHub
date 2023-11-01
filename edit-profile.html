@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Sign Up - Study Hive</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+</head>
+
+<body>
+<nav class="navbar navbar-dark navbar-expand-md sticky-top py-3" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <span id="welcome">Study Hive</span>
+        </a>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+            <span class="visually-hidden">Toggle navigation</span>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="courses-explore.html">Explore</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cart.html">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="edit-profile.html" id="editProfile" style="display: none">Profile</a>
+                </li>
+            </ul>
+            <a class="btn btn-primary shadow" role="button" href="signup.html" id="loginBtn">Sign Up</a>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Check if the loggedInUser exists in localStorage
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+        // If the loggedInUser exists, change the text of the login button to "Log Out"
+        const loginBtn = document.getElementById('loginBtn');
+        const welcomeMsg = document.getElementById('welcome');
+        loginBtn.textContent = 'Log Out';
+        welcomeMsg.innerHTML = 'Hi, '+ JSON.parse(loggedInUser).name;
+        var editProfileLink = document.getElementById("editProfile");
+
+// Display the editProfile link by setting its style to block
+        editProfileLink.style.display = "block";
+
+        // Add an event listener to the login button to clear the loggedInUser from localStorage when clicked
+        loginBtn.addEventListener('click', () => {
+            localStorage.removeItem('loggedInUser');
+            location.reload(); // Reload the page to update the button text
+        });
+    }
+</script>
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-2 mb-lg-2">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <p class="fw-bold text-success mb-2">Edit Profile</p>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 col-xl-4">
+                <div class="card bg-dark">
+                    <div class="card-body text-center d-flex flex-column align-items-center">
+                        <form method="post" id="login-form">
+                            <div class="mb-3">Email <input class="form-control" type="email" name="email" placeholder="Email" id="login-email"></div>
+                            <div class="mb-3">Name <input class="form-control" type="text" name="name" placeholder="Name" id="login-name"></div>
+                            <div class="mb-3">Phone <input class="form-control" type="number" name="phone" placeholder="Phone" id="login-phone"></div>
+                            <div class="mb-3">Password <input class="form-control" type="text" name="password" placeholder="Password" id="login-password"></div>
+                            <div class="mb-3"><button class="btn btn-primary shadow d-block w-100" type="submit">Save</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="bg-dark">
+    <div class="container py-4 py-lg-5">
+
+        <hr>
+        <div class="text-muted text-center pt-3">
+            <p class="mb-0">Copyright © 2023 Study Hive</p>
+        </div>
+    </div>
+</footer>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/bs-init.js"></script>
+<script src="assets/js/bold-and-dark.js"></script>
+<script src="js/edit-profile.js"></script>
+</body>
+
+</html>
